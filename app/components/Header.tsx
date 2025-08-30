@@ -25,38 +25,51 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-600 hover:scale-105 transition-all duration-300 relative group">
               TenisMoveSGP
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6 lg:space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">Início</Link>
-            <Link href="/produtos" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">Produtos</Link>
-            <Link href="/sobre" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">Sobre</Link>
-            <Link href="/contato" className="text-gray-700 hover:text-gray-900 transition-colors font-medium">Contato</Link>
+            <Link href="/" className="text-gray-700 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium relative group">
+              Início
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link href="/produtos" className="text-gray-700 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium relative group">
+              Produtos
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link href="/sobre" className="text-gray-700 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium relative group">
+              Sobre
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+            <Link href="/contato" className="text-gray-700 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium relative group">
+              Contato
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-3 lg:space-x-4">
             {/* Search */}
-            <Link href="/busca" className="p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link href="/busca" className="p-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-300 hover:scale-110 group">
+              <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </Link>
 
             {/* Favorites */}
-            <Link href="/favoritos" className="p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link href="/favoritos" className="p-2 text-gray-700 hover:text-red-500 hover:bg-red-50 rounded-full transition-all duration-300 hover:scale-110 group">
+              <svg className="w-5 h-5 group-hover:fill-red-500 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
             </Link>
 
             {/* Cart */}
-            <Link href="/carrinho" className="p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors relative">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <Link href="/carrinho" className="p-2 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-full transition-all duration-300 hover:scale-110 group relative">
+              <svg className="w-5 h-5 group-hover:bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </Link>
@@ -66,27 +79,27 @@ export default function Header() {
               <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
             ) : user ? (
               <div className="relative group">
-                <button className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 transition-colors p-2 rounded-full hover:bg-gray-100">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                <button className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-all duration-300 p-2 rounded-full hover:bg-blue-50 hover:scale-105 group">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-700 transition-colors duration-300">
                     <span className="text-white text-sm font-medium">
                       {user.email?.charAt(0).toUpperCase()}
                     </span>
                   </div>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
 
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <Link href="/perfil" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link href="/perfil" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105">
                     Meu Perfil
                   </Link>
-                  <Link href="/pedidos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link href="/pedidos" className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105">
                     Meus Pedidos
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition-all duration-300 hover:scale-105"
                   >
                     Sair
                   </button>
@@ -96,13 +109,14 @@ export default function Header() {
               <div className="flex items-center space-x-2">
                 <Link
                   href="/login"
-                  className="text-gray-700 hover:text-gray-900 transition-colors font-medium px-3 py-2 rounded-md hover:bg-gray-100"
+                  className="text-gray-700 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium px-3 py-2 rounded-md hover:bg-blue-50 relative group"
                 >
                   Entrar
+                  <span className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-8"></span>
                 </Link>
                 <Link
                   href="/cadastro"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-medium"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-md hover:shadow-lg"
                 >
                   Cadastrar
                 </Link>
@@ -113,9 +127,9 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+            className="md:hidden p-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-300 hover:scale-110"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 transition-transform duration-300 hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -131,38 +145,42 @@ export default function Header() {
             <div className="px-4 py-6 space-y-4">
               {/* Mobile Navigation */}
               <nav className="space-y-2">
-                <Link href="/" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors font-medium">
+                <Link href="/" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:scale-105 rounded-md transition-all duration-300 font-medium relative group">
                   Início
+                  <span className="absolute bottom-1 left-3 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-12"></span>
                 </Link>
-                <Link href="/produtos" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors font-medium">
+                <Link href="/produtos" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:scale-105 rounded-md transition-all duration-300 font-medium relative group">
                   Produtos
+                  <span className="absolute bottom-1 left-3 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-16"></span>
                 </Link>
-                <Link href="/sobre" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors font-medium">
+                <Link href="/sobre" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:scale-105 rounded-md transition-all duration-300 font-medium relative group">
                   Sobre
+                  <span className="absolute bottom-1 left-3 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-12"></span>
                 </Link>
-                <Link href="/contato" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors font-medium">
+                <Link href="/contato" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 hover:scale-105 rounded-md transition-all duration-300 font-medium relative group">
                   Contato
+                  <span className="absolute bottom-1 left-3 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-14"></span>
                 </Link>
               </nav>
 
               {/* Mobile Actions */}
               <div className="border-t border-gray-100 pt-4 space-y-2">
-                <Link href="/busca" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Link href="/busca" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-300 hover:scale-105 group">
+                  <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
                   <span>Buscar</span>
                 </Link>
 
-                <Link href="/favoritos" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Link href="/favoritos" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-red-500 hover:bg-red-50 rounded-md transition-all duration-300 hover:scale-105 group">
+                  <svg className="w-5 h-5 group-hover:fill-red-500 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                   <span>Favoritos</span>
                 </Link>
 
-                <Link href="/carrinho" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <Link href="/carrinho" onClick={closeMenu} className="flex items-center space-x-3 px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-md transition-all duration-300 hover:scale-105 group">
+                  <svg className="w-5 h-5 group-hover:bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>
                   <span>Carrinho</span>
@@ -177,8 +195,8 @@ export default function Header() {
                   </div>
                 ) : user ? (
                   <div className="space-y-2">
-                    <div className="flex items-center space-x-3 px-3 py-2">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+                    <div className="flex items-center space-x-3 px-3 py-2 hover:bg-blue-50 rounded-md transition-all duration-300 hover:scale-105 group">
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center group-hover:bg-blue-700 transition-colors duration-300">
                         <span className="text-white font-medium">
                           {user.email?.charAt(0).toUpperCase()}
                         </span>
@@ -188,15 +206,15 @@ export default function Header() {
                         <p className="text-xs text-gray-500">{user.email}</p>
                       </div>
                     </div>
-                    <Link href="/perfil" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                    <Link href="/perfil" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-300 hover:scale-105">
                       Meu Perfil
                     </Link>
-                    <Link href="/pedidos" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors">
+                    <Link href="/pedidos" onClick={closeMenu} className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-all duration-300 hover:scale-105">
                       Meus Pedidos
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="block w-full text-left px-3 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                      className="block w-full text-left px-3 py-2 text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-md transition-all duration-300 hover:scale-105"
                     >
                       Sair
                     </button>
@@ -206,14 +224,15 @@ export default function Header() {
                     <Link
                       href="/login"
                       onClick={closeMenu}
-                      className="block w-full text-center bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors font-medium"
+                      className="block w-full text-center bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium relative group"
                     >
                       Entrar
+                      <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-8"></span>
                     </Link>
                     <Link
                       href="/cadastro"
                       onClick={closeMenu}
-                      className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors font-medium"
+                      className="block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-md hover:shadow-lg"
                     >
                       Cadastrar
                     </Link>

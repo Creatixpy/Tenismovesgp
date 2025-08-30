@@ -53,7 +53,7 @@ export default function Contato() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {informacoesContato.map((info, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div key={index} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={info.icone} />
@@ -152,7 +152,7 @@ export default function Contato() {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 hover:scale-105 transition-all duration-300 font-medium shadow-md hover:shadow-lg"
                 >
                   Enviar Mensagem
                 </button>
@@ -164,7 +164,7 @@ export default function Contato() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Onde Estamos</h2>
 
               {/* Mapa Placeholder */}
-              <div className="bg-gray-200 rounded-xl h-64 mb-8 flex items-center justify-center">
+              <div className="bg-gray-200 rounded-xl h-64 mb-8 flex items-center justify-center hover:bg-gray-300 transition-colors duration-300 cursor-pointer">
                 <div className="text-center">
                   <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -176,7 +176,7 @@ export default function Contato() {
 
               {/* Informações Adicionais */}
               <div className="space-y-6">
-                <div className="bg-blue-50 rounded-xl p-6">
+                <div className="bg-blue-50 rounded-xl p-6 hover:bg-blue-100 transition-colors duration-300 cursor-pointer">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Atendimento ao Cliente</h3>
                   <div className="space-y-2 text-sm text-gray-600">
                     <p><strong>WhatsApp:</strong> (11) 99999-9999</p>
@@ -185,7 +185,7 @@ export default function Contato() {
                   </div>
                 </div>
 
-                <div className="bg-green-50 rounded-xl p-6">
+                <div className="bg-green-50 rounded-xl p-6 hover:bg-green-100 transition-colors duration-300 cursor-pointer">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Redes Sociais</h3>
                   <div className="flex space-x-4">
                     <a href="#" className="text-gray-600 hover:text-blue-600 transition-colors">

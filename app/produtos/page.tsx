@@ -48,10 +48,10 @@ export default function Produtos() {
       <section className="bg-gradient-to-br from-blue-50 to-white py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 hover:scale-105 transition-all duration-300 cursor-default">
               Nossa Coleção
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+            <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-4 hover:text-gray-700 transition-colors duration-300 cursor-pointer">
               Explore nossa seleção completa de tênis premium para todos os estilos e necessidades.
             </p>
           </div>
@@ -64,10 +64,10 @@ export default function Produtos() {
           <div className="flex flex-wrap gap-2 sm:gap-4 justify-center">
             <button
               onClick={() => setCategoriaSelecionada('')}
-              className={`px-4 sm:px-6 py-2 rounded-lg transition-colors text-sm sm:text-base font-medium ${
+              className={`px-4 sm:px-6 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base font-medium hover:scale-105 ${
                 categoriaSelecionada === ''
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600'
               }`}
             >
               Todos
@@ -76,10 +76,10 @@ export default function Produtos() {
               <button
                 key={categoria.id}
                 onClick={() => setCategoriaSelecionada(categoria.id)}
-                className={`px-4 sm:px-6 py-2 rounded-lg transition-colors text-sm sm:text-base font-medium ${
+                className={`px-4 sm:px-6 py-2 rounded-lg transition-all duration-300 text-sm sm:text-base font-medium hover:scale-105 ${
                   categoriaSelecionada === categoria.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600'
                 }`}
               >
                 {categoria.nome}
@@ -95,11 +95,11 @@ export default function Produtos() {
           {loadingProdutos ? (
             <div className="text-center py-8 sm:py-12">
               <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="text-gray-500 mt-4 text-sm sm:text-base">Carregando produtos...</p>
+              <p className="text-gray-500 mt-4 text-sm sm:text-base hover:text-gray-600 transition-colors duration-300 cursor-pointer">Carregando produtos...</p>
             </div>
           ) : produtos.length === 0 ? (
             <div className="text-center py-8 sm:py-12">
-              <p className="text-gray-500 text-base sm:text-lg">Nenhum produto encontrado.</p>
+              <p className="text-gray-500 text-base sm:text-lg hover:text-gray-600 transition-colors duration-300 cursor-pointer">Nenhum produto encontrado.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
@@ -115,21 +115,23 @@ export default function Produtos() {
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                        <span className="text-gray-400">Sem imagem</span>
+                        <span className="text-gray-400 hover:text-gray-500 transition-colors duration-300 cursor-pointer">Sem imagem</span>
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                     <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                       <button
                         onClick={() => toggleFavorito(produto.id)}
-                        className={`p-1.5 sm:p-2 backdrop-blur-sm rounded-full transition-all duration-200 hover:scale-110 ${
+                        className={`p-1.5 sm:p-2 backdrop-blur-sm rounded-full transition-all duration-300 hover:scale-110 group ${
                           isFavorito(produto.id)
-                            ? 'bg-red-500 text-white'
-                            : 'bg-white/80 text-gray-700 hover:bg-white'
+                            ? 'bg-red-500 text-white shadow-lg'
+                            : 'bg-white/80 text-gray-700 hover:bg-red-50 hover:text-red-600'
                         }`}
                       >
                         <svg
-                          className="w-4 h-4 sm:w-5 sm:h-5"
+                          className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300 ${
+                            isFavorito(produto.id) ? 'fill-current' : 'group-hover:fill-red-500'
+                          }`}
                           fill={isFavorito(produto.id) ? 'currentColor' : 'none'}
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -142,38 +144,38 @@ export default function Produtos() {
 
                   <div className="p-4 sm:p-6 flex-1 flex flex-col">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-2">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">{produto.nome}</h3>
-                      <span className="text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded self-start sm:self-auto">
-                        {produto.categorias?.nome || 'Sem categoria'}
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2 hover:text-blue-600 transition-colors duration-300 cursor-pointer">{produto.nome}</h3>
+                      <span className="text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded self-start sm:self-auto hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 cursor-pointer">
+                        {produto.categorias?.nome || <span className="text-gray-400 hover:text-gray-500 transition-colors duration-300 cursor-pointer">Sem categoria</span>}
                       </span>
                     </div>
 
-                    <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">{produto.descricao || 'Sem descrição'}</p>
+                    <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 hover:text-gray-700 transition-colors duration-300 cursor-pointer">{produto.descricao || <span className="text-gray-400 hover:text-gray-500 transition-colors duration-300 cursor-pointer">Sem descrição</span>}</p>
 
                     <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">Cores disponíveis:</p>
+                        <p className="text-xs text-gray-500 mb-1 hover:text-gray-600 transition-colors duration-300 cursor-pointer">Cores disponíveis:</p>
                         <div className="flex gap-2">
                           {produto.cor ? (
                             <div
-                              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-200 cursor-pointer hover:border-gray-400 transition-colors"
+                              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-gray-200 cursor-pointer hover:border-blue-400 hover:scale-110 transition-all duration-300"
                               style={{backgroundColor: produto.cor.toLowerCase()}}
                             ></div>
                           ) : (
-                            <span className="text-xs text-gray-400">N/A</span>
+                            <span className="text-xs text-gray-400 hover:text-gray-500 transition-colors duration-300 cursor-pointer">N/A</span>
                           )}
                         </div>
                       </div>
 
                       <div>
-                        <p className="text-xs text-gray-500 mb-1">Tamanhos:</p>
+                        <p className="text-xs text-gray-500 mb-1 hover:text-gray-600 transition-colors duration-300 cursor-pointer">Tamanhos:</p>
                         <div className="flex gap-1 flex-wrap">
                           {produto.tamanho ? (
-                            <button className="px-2 py-1 text-xs border border-gray-200 rounded hover:border-gray-400 transition-colors">
+                            <button className="px-2 py-1 text-xs border border-gray-200 rounded hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 hover:scale-105">
                               {produto.tamanho}
                             </button>
                           ) : (
-                            <span className="text-xs text-gray-400">N/A</span>
+                            <span className="text-xs text-gray-400 hover:text-gray-500 transition-colors duration-300 cursor-pointer">N/A</span>
                           )}
                         </div>
                       </div>
@@ -181,11 +183,11 @@ export default function Produtos() {
 
                     <div className="flex flex-col gap-3 mt-auto">
                       <div className="flex flex-col">
-                        <span className="text-xl sm:text-2xl font-bold text-gray-900">
+                        <span className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
                           R$ {produto.preco.toFixed(2)}
                         </span>
                         {produto.preco_promocional && (
-                          <span className="text-sm text-gray-500 line-through">
+                          <span className="text-sm text-gray-500 line-through hover:text-red-500 transition-colors duration-300 cursor-pointer">
                             R$ {produto.preco_promocional.toFixed(2)}
                           </span>
                         )}
@@ -194,19 +196,19 @@ export default function Produtos() {
                         <button
                           onClick={() => handleAdicionarItem(produto.id)}
                           disabled={adicionandoProduto === produto.id}
-                          className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-blue-400 transition-colors font-medium text-sm flex-1 sm:flex-none"
+                          className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-blue-400 hover:scale-105 hover:shadow-lg transition-all duration-300 font-medium text-sm flex-1 sm:flex-none"
                         >
                           {adicionandoProduto === produto.id ? 'Adicionando...' : 'Adicionar'}
                         </button>
                         <Link
                           href={`/produtos/${produto.id}`}
-                          className="bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors font-medium text-sm text-center flex-1 sm:flex-none"
+                          className="bg-gray-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-gray-700 hover:scale-105 hover:shadow-lg transition-all duration-300 font-medium text-sm text-center flex-1 sm:flex-none"
                         >
                           Ver Detalhes
                         </Link>
                       </div>
                       {erroCarrinho && (
-                        <p className="text-red-500 text-xs mt-1">{erroCarrinho}</p>
+                        <p className="text-red-500 text-xs mt-1 hover:text-red-600 transition-colors duration-300 cursor-pointer">{erroCarrinho}</p>
                       )}
                     </div>
                   </div>
