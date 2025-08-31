@@ -6,13 +6,9 @@ import Header from "@/app/components/Header"
 import Footer from "@/app/components/Footer"
 import { EstrelasAvaliacao } from "@/app/components/EstrelasAvaliacao"
 import { useProdutosDestaques } from '@/lib/hooks'
-import type { Database } from '@/lib/supabase'
+import type { Produto } from '@/lib/hooks'
 
-type Produto = Database['public']['Tables']['produtos']['Row'] & {
-  categorias?: {
-    nome: string
-    slug: string
-  }
+type ProdutoComAvaliacoes = Produto & {
   mediaAvaliacoes?: number
   quantidadeAvaliacoes?: number
 }
@@ -81,7 +77,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {produtos.slice(0, 3).map((produto: Produto, index: number) => (
+              {produtos.slice(0, 3).map((produto: ProdutoComAvaliacoes, index: number) => (
                 <div
                   key={produto.id}
                   className="group bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/20 animate-fade-in-up"
@@ -94,7 +90,7 @@ export default function Home() {
                     <div className="aspect-square bg-gradient-to-br from-white/20 to-white/10 rounded-lg sm:rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-500">
                       {produto.imagens && produto.imagens.length > 0 ? (
                         <Image
-                          src={produto.imagens[0]}
+                          src={produto.imagens[0].url_publica}
                           alt={produto.nome}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-500"

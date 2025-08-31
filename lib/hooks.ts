@@ -5,11 +5,20 @@ import type { User } from '@supabase/supabase-js'
 import { CarrinhoContext } from '@/lib/CarrinhoContext'
 
 // Tipos
-type Produto = Database['public']['Tables']['produtos']['Row'] & {
+export type ImagemProduto = {
+  id: string
+  nome_arquivo: string
+  url_publica: string
+  ordem: number
+  principal: boolean
+}
+
+export type Produto = Database['public']['Tables']['produtos']['Row'] & {
   categorias?: {
     nome: string
     slug: string
   }
+  imagens?: ImagemProduto[]
 }
 type ProdutoComAvaliacoes = Produto & {
   mediaAvaliacoes: number
@@ -40,6 +49,13 @@ export function useProdutos(categoriaId?: string, limite = 20) {
             categorias (
               nome,
               slug
+            ),
+            imagens_produto (
+              id,
+              nome_arquivo,
+              url_publica,
+              ordem,
+              principal
             )
           `)
           .eq('ativo', true)
@@ -55,7 +71,22 @@ export function useProdutos(categoriaId?: string, limite = 20) {
         if (error) {
           setError(error.message)
         } else {
-          setProdutos(data || [])
+          // Processar produtos com imagens organizadas
+          const produtosComImagens = (data || []).map(produto => ({
+            ...produto,
+            imagens: produto.imagens_produto
+              ? (produto.imagens_produto as ImagemProduto[])
+                  .sort((a: ImagemProduto, b: ImagemProduto) => a.ordem - b.ordem)
+                  .map((img: ImagemProduto) => ({
+                    id: img.id,
+                    nome_arquivo: img.nome_arquivo,
+                    url_publica: img.url_publica,
+                    ordem: img.ordem,
+                    principal: img.principal
+                  }))
+              : []
+          }))
+          setProdutos(produtosComImagens)
         }
       } catch {
         setError('Erro ao carregar produtos')
@@ -90,6 +121,13 @@ export function useProdutosDestaques(limite = 6) {
               nome,
               slug
             ),
+            imagens_produto (
+              id,
+              nome_arquivo,
+              url_publica,
+              ordem,
+              principal
+            ),
             avaliacoes (
               nota
             )
@@ -110,6 +148,17 @@ export function useProdutosDestaques(limite = 6) {
           
           return {
             ...produto,
+            imagens: produto.imagens_produto
+              ? (produto.imagens_produto as ImagemProduto[])
+                  .sort((a: ImagemProduto, b: ImagemProduto) => a.ordem - b.ordem)
+                  .map((img: ImagemProduto) => ({
+                    id: img.id,
+                    nome_arquivo: img.nome_arquivo,
+                    url_publica: img.url_publica,
+                    ordem: img.ordem,
+                    principal: img.principal
+                  }))
+              : [],
             mediaAvaliacoes,
             quantidadeAvaliacoes
           }
@@ -479,6 +528,13 @@ export function useProduto(id: string) {
             categorias (
               nome,
               slug
+            ),
+            imagens_produto (
+              id,
+              nome_arquivo,
+              url_publica,
+              ordem,
+              principal
             )
           `)
           .eq('id', id)
@@ -488,7 +544,23 @@ export function useProduto(id: string) {
         if (error) {
           setError(error.message)
         } else {
-          setProduto(data)
+          // Organizar as imagens por ordem e marcar a principal
+          const imagensOrdenadas = data.imagens_produto
+            ? (data.imagens_produto as ImagemProduto[])
+                .sort((a: ImagemProduto, b: ImagemProduto) => a.ordem - b.ordem)
+                .map((img: ImagemProduto) => ({
+                  id: img.id,
+                  nome_arquivo: img.nome_arquivo,
+                  url_publica: img.url_publica,
+                  ordem: img.ordem,
+                  principal: img.principal
+                }))
+            : []
+
+          setProduto({
+            ...data,
+            imagens: imagensOrdenadas
+          })
         }
       } catch {
         setError('Erro ao carregar produto')

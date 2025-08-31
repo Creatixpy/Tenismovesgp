@@ -9,7 +9,9 @@ type ItemCarrinho = Database['public']['Tables']['itens_carrinho']['Row'] & {
   produtos: {
     nome: string
     preco: number
-    imagens: string[]
+    imagens_produto: {
+      url_publica: string
+    }[]
   } | null
 }
 
@@ -68,11 +70,14 @@ export function CarrinhoProvider({ children }: { children: React.ReactNode }) {
           criado_em,
           produtos!inner (
             nome,
-            preco,
-            imagens
+            preco
+          ),
+          produtos.imagens_produto!inner (
+            url_publica
           )
         `)
         .eq('carrinho_id', carrinhoExistente.id)
+        .eq('produtos.imagens_produto.principal', true)
 
       if (itensError) {
         console.error('Erro ao buscar itens do carrinho:', itensError)

@@ -14,6 +14,13 @@ type Produto = Database['public']['Tables']['produtos']['Row'] & {
     nome: string
     slug: string
   }
+  imagens?: {
+    id: string
+    nome_arquivo: string
+    url_publica: string
+    ordem: number
+    principal: boolean
+  }[]
 }
 type Categoria = Database['public']['Tables']['categorias']['Row']
 
@@ -108,7 +115,7 @@ export default function Produtos() {
                   <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden flex-shrink-0">
                     {produto.imagens && produto.imagens.length > 0 ? (
                       <Image
-                        src={produto.imagens[0]}
+                        src={produto.imagens[0].url_publica}
                         alt={produto.nome}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"

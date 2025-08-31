@@ -174,6 +174,46 @@ export type Database = {
         }
         Update: Record<string, never>
       }
+      imagens_produto: {
+        Row: {
+          id: string
+          produto_id: string
+          nome_arquivo: string
+          caminho_supabase: string
+          url_publica: string
+          tamanho_bytes: number | null
+          tipo_mime: string | null
+          largura: number | null
+          altura: number | null
+          ordem: number
+          principal: boolean
+          criado_em: string
+          atualizado_em: string
+        }
+        Insert: {
+          produto_id: string
+          nome_arquivo: string
+          caminho_supabase: string
+          url_publica: string
+          tamanho_bytes?: number | null
+          tipo_mime?: string | null
+          largura?: number | null
+          altura?: number | null
+          ordem?: number
+          principal?: boolean
+        }
+        Update: {
+          nome_arquivo?: string
+          caminho_supabase?: string
+          url_publica?: string
+          tamanho_bytes?: number | null
+          tipo_mime?: string | null
+          largura?: number | null
+          altura?: number | null
+          ordem?: number
+          principal?: boolean
+        }
+      }
       itens_carrinho: {
         Row: {
           id: string

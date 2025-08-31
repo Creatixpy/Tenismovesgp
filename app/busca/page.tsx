@@ -6,14 +6,7 @@ import Image from 'next/image'
 import Header from "@/app/components/Header"
 import Footer from "@/app/components/Footer"
 import { useProdutos } from '@/lib/hooks'
-import type { Database } from '@/lib/supabase'
-
-type Produto = Database['public']['Tables']['produtos']['Row'] & {
-  categorias?: {
-    nome: string
-    slug: string
-  }
-}
+import type { Produto } from '@/lib/hooks'
 
 function BuscaContent() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -94,7 +87,7 @@ function BuscaContent() {
                           <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
                             {produto.imagens && produto.imagens.length > 0 ? (
                               <Image
-                                src={produto.imagens[0]}
+                                src={produto.imagens[0].url_publica}
                                 alt={produto.nome}
                                 fill
                                 className="object-cover"

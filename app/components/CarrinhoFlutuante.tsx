@@ -123,7 +123,7 @@ export function CarrinhoFlutuante() {
                     >
                       <div className="relative">
                         <Image
-                          src={item.produtos?.imagens?.[0] || '/placeholder.jpg'}
+                          src={item.produtos?.imagens_produto?.[0]?.url_publica || '/placeholder.jpg'}
                           alt={item.produtos?.nome || 'Produto'}
                           width={80}
                           height={80}

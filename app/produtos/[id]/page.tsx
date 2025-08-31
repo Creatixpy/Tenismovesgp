@@ -125,7 +125,7 @@ export default function ProdutoDetalhes() {
             <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
               {produto.imagens && produto.imagens.length > 0 ? (
                 <Image
-                  src={produto.imagens[imagemSelecionada]}
+                  src={produto.imagens[imagemSelecionada].url_publica}
                   alt={produto.nome}
                   width={600}
                   height={600}
@@ -141,16 +141,16 @@ export default function ProdutoDetalhes() {
             {/* Miniaturas */}
             {produto.imagens && produto.imagens.length > 1 && (
               <div className="flex gap-2 overflow-x-auto">
-                {produto.imagens.map((imagem: string, index: number) => (
+                {produto.imagens.map((imagem: {id: string, url_publica: string}, index: number) => (
                   <button
-                    key={index}
+                    key={imagem.id}
                     onClick={() => setImagemSelecionada(index)}
                     className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 ${
                       imagemSelecionada === index ? 'border-blue-500' : 'border-gray-200'
                     }`}
                   >
                     <Image
-                      src={imagem}
+                      src={imagem.url_publica}
                       alt={`${produto.nome} ${index + 1}`}
                       width={80}
                       height={80}

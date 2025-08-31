@@ -10,7 +10,9 @@ type ItemCarrinho = Database['public']['Tables']['itens_carrinho']['Row'] & {
   produtos: {
     nome: string
     preco: number
-    imagens: string[]
+    imagens_produto: {
+      url_publica: string
+    }[]
   } | null
 }
 
@@ -62,9 +64,9 @@ function CarrinhoContent() {
                 {itens.map((item: ItemCarrinho) => (
                   <div key={item.id} className="flex items-center space-x-4 border-b border-gray-200 pb-4">
                     <div className="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-md overflow-hidden">
-                      {item.produtos?.imagens && item.produtos.imagens.length > 0 ? (
+                      {item.produtos?.imagens_produto && item.produtos.imagens_produto.length > 0 ? (
                         <Image
-                          src={item.produtos.imagens[0]}
+                          src={item.produtos.imagens_produto[0].url_publica}
                           alt={item.produtos.nome || 'Produto'}
                           width={64}
                           height={64}

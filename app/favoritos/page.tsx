@@ -6,14 +6,7 @@ import ProtectedRoute from '@/app/components/ProtectedRoute'
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
 import { useFavoritos, useProdutos } from '@/lib/hooks'
-import type { Database } from '@/lib/supabase'
-
-type Produto = Database['public']['Tables']['produtos']['Row'] & {
-  categorias?: {
-    nome: string
-    slug: string
-  }
-}
+import type { Produto } from '@/lib/hooks'
 
 function FavoritosContent() {
   const { favoritos } = useFavoritos()
@@ -55,7 +48,7 @@ function FavoritosContent() {
                     <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
                       {produto.imagens && produto.imagens.length > 0 ? (
                         <Image
-                          src={produto.imagens[0]}
+                          src={produto.imagens[0].url_publica}
                           alt={produto.nome}
                           fill
                           className="object-cover"
