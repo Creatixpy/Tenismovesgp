@@ -40,9 +40,6 @@ export default function Home() {
               <Link href="/produtos" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all duration-300 font-medium">
                 Explorar Coleção
               </Link>
-              <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-50 hover:border-blue-300 hover:text-blue-600 hover:scale-105 transition-all duration-300 font-medium">
-                <Link href="/destaques">Ver Destaques</Link>
-              </button>
             </div>
           </div>
         </div>
@@ -170,15 +167,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* Botão para ver mais - Otimizado para mobile */}
-          <div className="text-center mt-8 sm:mt-12">
-            <Link
-              href="/destaques"
-              className="inline-block bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:scale-105 transition-all duration-300 border-2 border-white/30 hover:border-white/50 shadow-lg text-sm sm:text-base"
-            >
-              Ver Todos os Destaques
-            </Link>
-          </div>
         </div>
 
         {/* Ondas animadas no fundo - Otimizadas para mobile */}
