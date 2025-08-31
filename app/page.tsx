@@ -52,105 +52,144 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section id="produtos" className="py-12 sm:py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Destaques Animados Section */}
+      <section className="relative py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 overflow-hidden">
+        {/* Elementos de fundo animados - Otimizados para mobile */}
+        <div className="absolute inset-0">
+          <div className="absolute top-5 left-5 sm:top-10 sm:left-10 w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+          <div className="absolute top-16 right-10 sm:top-32 sm:right-20 w-8 h-8 sm:w-16 sm:h-16 bg-white/10 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-10 left-1/4 sm:bottom-20 w-6 h-6 sm:w-12 sm:h-12 bg-white/10 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-16 right-1/3 sm:bottom-32 w-10 h-10 sm:w-24 sm:h-24 bg-white/10 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute top-1/2 left-1/2 w-4 h-4 sm:w-8 sm:h-8 bg-white/10 rounded-full animate-bounce" style={{animationDelay: '1.5s'}}></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 hover:scale-105 transition-all duration-300 cursor-default">
-              Produtos em Destaque
-            </h3>
-            <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto px-4 hover:text-gray-700 transition-colors duration-300 cursor-pointer">
-              Nossa seleção curada dos melhores tênis do mercado, escolhidos por qualidade e estilo.
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-4 hover:scale-105 transition-all duration-300 cursor-default animate-pulse">
+              Destaques em Movimento
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-2xl mx-auto px-2 sm:px-0 hover:text-white transition-colors duration-300 cursor-pointer">
+              Produtos premium que combinam performance, estilo e inovação
             </p>
           </div>
 
           {loading ? (
             <div className="text-center py-8 sm:py-12">
-              <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-blue-600 mx-auto"></div>
-              <p className="text-gray-500 mt-4 text-sm sm:text-base">Carregando produtos...</p>
+              <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-b-2 border-white mx-auto"></div>
+              <p className="text-white mt-3 sm:mt-4 text-sm sm:text-base">Carregando destaques...</p>
             </div>
           ) : produtos.length === 0 ? (
             <div className="text-center py-8 sm:py-12">
-              <p className="text-gray-500 text-base sm:text-lg">Nenhum produto encontrado.</p>
+              <p className="text-white text-base sm:text-lg">Nenhum produto em destaque encontrado.</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {produtos.map((produto: Produto) => (
-                <div key={produto.id} className="group bg-white rounded-lg sm:rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden flex-shrink-0">
-                    {produto.imagens && produto.imagens.length > 0 ? (
-                      <Image
-                        src={produto.imagens[0]}
-                        alt={produto.nome}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                        <span className="text-gray-400 text-sm">Sem imagem</span>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-                      <button className="p-1.5 sm:p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-red-50 hover:scale-110 transition-all duration-300 group">
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700 group-hover:text-red-500 group-hover:fill-red-500 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {produtos.slice(0, 3).map((produto: Produto, index: number) => (
+                <div
+                  key={produto.id}
+                  className="group bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/20 animate-fade-in-up"
+                  style={{
+                    animationDelay: `${index * 0.2}s`,
+                    transform: `translateY(${index * 20}px)`,
+                  }}
+                >
+                  <div className="relative mb-3 sm:mb-4">
+                    <div className="aspect-square bg-gradient-to-br from-white/20 to-white/10 rounded-lg sm:rounded-xl overflow-hidden group-hover:scale-110 transition-transform duration-500">
+                      {produto.imagens && produto.imagens.length > 0 ? (
+                        <Image
+                          src={produto.imagens[0]}
+                          alt={produto.nome}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                          <span className="text-gray-600 text-xs sm:text-sm">Sem imagem</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Badge animado - Otimizado para mobile */}
+                    <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full shadow-lg animate-bounce">
+                      ⭐ Destaque
+                    </div>
+
+                    {/* Ícone de favorito animado - Otimizado para mobile */}
+                    <div className="absolute top-2 right-2 sm:top-3 sm:right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="p-1.5 sm:p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-red-500/20 hover:scale-110 transition-all duration-300">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white hover:text-red-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
                     </div>
                   </div>
 
-                  <div className="p-4 sm:p-6 flex-1 flex flex-col">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-2">
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2 hover:text-blue-600 transition-colors duration-300 cursor-pointer">{produto.nome}</h3>
-                      <span className="text-xs sm:text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded self-start sm:self-auto hover:bg-blue-100 hover:text-blue-600 transition-all duration-300 cursor-pointer">
-                        {produto.categorias?.nome || 'Sem categoria'}
-                      </span>
-                    </div>
+                  <div className="text-white">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 hover:text-yellow-300 transition-colors duration-300 cursor-pointer line-clamp-2">
+                      {produto.nome}
+                    </h3>
 
-                    <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2 hover:text-gray-700 transition-colors duration-300 cursor-pointer">{produto.descricao || 'Sem descrição'}</p>
+                    <p className="text-white/80 text-xs sm:text-sm mb-2 sm:mb-3 hover:text-white transition-colors duration-300 cursor-pointer line-clamp-2">
+                      {produto.descricao || 'Produto premium com qualidade excepcional'}
+                    </p>
 
                     {produto.mediaAvaliacoes && produto.mediaAvaliacoes > 0 && (
-                      <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex items-center mb-2 sm:mb-3 hover:scale-105 transition-transform duration-300 cursor-pointer">
                         <EstrelasAvaliacao nota={produto.mediaAvaliacoes} tamanho={14} />
-                        <span className="text-xs sm:text-sm text-gray-600 ml-2 hover:text-gray-700 transition-colors duration-300 cursor-pointer">
+                        <span className="text-white/90 text-xs sm:text-sm ml-2 hover:text-white transition-colors duration-300">
                           {produto.mediaAvaliacoes.toFixed(1)} ({produto.quantidadeAvaliacoes})
                         </span>
                       </div>
                     )}
 
-                    <div className="flex flex-col gap-3 mt-auto">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 gap-2">
                       <div className="flex flex-col">
-                        <span className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300 cursor-pointer">
+                        <span className="text-xl sm:text-2xl font-bold hover:text-yellow-300 transition-colors duration-300 cursor-pointer">
                           R$ {produto.preco.toFixed(2)}
                         </span>
                         {produto.preco_promocional && (
-                          <span className="text-sm text-gray-500 line-through hover:text-red-500 transition-colors duration-300 cursor-pointer">
+                          <span className="text-white/70 text-xs sm:text-sm line-through hover:text-white/90 transition-colors duration-300 cursor-pointer">
                             R$ {produto.preco_promocional.toFixed(2)}
                           </span>
                         )}
                       </div>
-                      <Link
-                        href={`/produtos/${produto.id}`}
-                        className="bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg hover:bg-blue-700 hover:scale-105 hover:shadow-lg transition-all duration-300 font-medium text-sm sm:text-base text-center w-full"
-                      >
-                        Ver Detalhes
-                      </Link>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded-full hover:bg-white/30 transition-colors duration-300 cursor-pointer self-start sm:self-auto">
+                        {produto.categorias?.nome || 'Premium'}
+                      </span>
                     </div>
+
+                    <Link
+                      href={`/produtos/${produto.id}`}
+                      className="block w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white text-center py-2.5 sm:py-3 rounded-lg font-semibold hover:scale-105 transition-all duration-300 border border-white/30 hover:border-white/50 text-sm sm:text-base"
+                    >
+                      Ver Detalhes
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="text-center mt-12">
+          {/* Botão para ver mais - Otimizado para mobile */}
+          <div className="text-center mt-8 sm:mt-12">
             <Link
-              href="/produtos"
-              className="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg hover:bg-gray-800 hover:scale-105 hover:shadow-lg transition-all duration-300 font-medium"
+              href="/destaques"
+              className="inline-block bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:scale-105 transition-all duration-300 border-2 border-white/30 hover:border-white/50 shadow-lg text-sm sm:text-base"
             >
-              Ver Todos os Produtos
+              Ver Todos os Destaques
             </Link>
           </div>
+        </div>
+
+        {/* Ondas animadas no fundo - Otimizadas para mobile */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg className="w-full h-12 sm:h-16 lg:h-20 xl:h-24" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+              d="M0,60 C300,100 600,20 900,60 C1050,80 1200,40 1200,60 L1200,120 L0,120 Z"
+              fill="rgba(255,255,255,0.1)"
+              className="animate-pulse"
+            />
+          </svg>
         </div>
       </section>
 
